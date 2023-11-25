@@ -1,0 +1,44 @@
+<a class="hover:bg-blue-200" href="/">Back</a>
+
+<div
+  hx-get="/thread-detail?id={id}"
+  hx-trigger="load"
+  hx-swap="outerHTML"
+></div>
+
+<div class="p-4 border-2 border-slate">
+  <h2 class="font-mono text-lg mb-2">New message</h2>
+  <form
+    hx-post="/message?id={id}"
+    hx-target="#messages"
+    hx-swap="innerHTML"
+    hx-on::after-request="this.reset()"
+  >
+    <input
+      class="p-2 rounded border-2 border-slate mb-2 w-full"
+      type="text"
+      name="title"
+      placeholder="Message title"
+    />
+    <textarea
+      class="p-2 rounded border-2 border-slate mb-2 w-full"
+      name="content"
+      cols="30"
+      rows="10"
+      placeholder="Content"
+    ></textarea>
+    <button
+      class="p-2 rounded border-transparent bg-blue-700 text-white hover:bg-blue-500"
+      type="submit"
+    >
+      Send message
+    </button>
+  </form>
+</div>
+
+<div
+  id="messages"
+  hx-get="/message-list?id={id}"
+  hx-trigger="load"
+  hx-swap="innerHTML"
+></div>
