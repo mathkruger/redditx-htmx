@@ -30,7 +30,7 @@ export class MessagesService {
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`
     const sql = 'insert into messages (threadId, title, content, timestamp) values (?, ?, ?, ?)';
     
-    this.db.run(sql, [threadId, title, content, timestamp]);
+    this.db.run(sql, [threadId, Bun.escapeHTML(title), Bun.escapeHTML(content), timestamp]);
   }
 
   delete(id: number) {

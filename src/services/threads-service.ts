@@ -29,7 +29,7 @@ export class ThreadsService {
 
   insert(name: string) {
     const sql = 'insert into threads (name) values (?)';
-    this.db.run(sql, [name]);
+    this.db.run(sql, [Bun.escapeHTML(name)]);
   }
 
   countMessages(id: number): number {

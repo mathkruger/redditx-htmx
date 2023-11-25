@@ -1,9 +1,12 @@
 <a class="hover:bg-blue-200" href="/">Back</a>
 
+<div id="indicator" class="htmx-indicator font-mono">...</div>
+
 <div
   hx-get="/thread-detail?id={id}"
   hx-trigger="load"
   hx-swap="outerHTML"
+  hx-indicator="#indicator"
 ></div>
 
 <div class="p-4 border-2 border-slate">
@@ -12,6 +15,7 @@
     hx-post="/message?id={id}"
     hx-target="#messages"
     hx-swap="innerHTML"
+    hx-indicator="#indicator"
     hx-on::after-request="this.reset()"
   >
     <input
@@ -24,7 +28,7 @@
       class="p-2 rounded border-2 border-slate mb-2 w-full"
       name="content"
       cols="30"
-      rows="10"
+      rows="5"
       placeholder="Content"
     ></textarea>
     <button
@@ -39,6 +43,7 @@
 <div
   id="messages"
   hx-get="/message-list?id={id}"
-  hx-trigger="load"
+  hx-trigger="load every 30s"
   hx-swap="innerHTML"
+  hx-indicator="#indicator"
 ></div>

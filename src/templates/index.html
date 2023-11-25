@@ -1,11 +1,14 @@
 <h1 class="font-mono text-4xl mb-4">RedditX</h1>
 
+<div id="indicator" class="htmx-indicator font-mono">...</div>
+
 <div class="p-4 border-2 border-slate">
   <h2 class="font-mono text-lg mb-2">Create new thread</h2>
   <form
     hx-post="/thread"
     hx-target="#threads"
     hx-swap="innerHTML"
+    hx-indicator="#indicator"
     hx-on::after-request="this.reset()"
   >
     <input
@@ -29,6 +32,7 @@
     id="threads"
     hx-get="/thread-list"
     hx-trigger="load"
+    hx-indicator="#indicator"
     hx-swap="innerHTML"
   ></div>
 </div>
