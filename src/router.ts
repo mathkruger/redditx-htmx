@@ -37,6 +37,11 @@ export async function handleRoutes(req: Request) {
       const threadId = parseInt(params.get('id') || '0');
       return await messagesController.getAll(threadId);
     }
+
+    if (url.pathname === '/messages-count') {
+      const threadId = parseInt(params.get('id') || '0');
+      return await threadsController.messagesCount(threadId);
+    }
   }
 
   if (method === 'POST') {

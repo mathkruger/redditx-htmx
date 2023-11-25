@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@stricjs/router": "^5.0.6",
-    "@stricjs/utils": "^1.6.1"
+    "@stricjs/utils": "^1.6.1",
+    "@supabase/supabase-js": "^2.38.5"
   }
 }

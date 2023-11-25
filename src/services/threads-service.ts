@@ -1,41 +1,36 @@
-import Database from "bun:sqlite";
 import { Thread } from "../models/thread";
+import { supabase } from "../db/supabase";
 
 export class ThreadsService {
-  db: Database;
-
-  constructor(database: string) {
-    this.db = new Database(database, {
-      create: true
-    });
-
-    this.db.run(`
-      create table if not exists threads (
-        id integer primary key,
-        name text
-      )
-    `);
+  async getAll(): Promise<Thread[]> {
+    const query = await supabase.from('threads').select('id, name').then(x => x.data as Thread[]);
+    return query;
   }
 
-  getAll(): Thread[] {
-    const query = this.db.query(`select id, name from threads`);
-    return query.all() as Thread[];
+  async get(id: number): Promise<Thread> {
+    const query = await supabase
+      .from('threads')
+      .select('id, name')
+      .filter('id', 'eq', id)
+      .single()
+      .then(x => x.data as Thread)
+    return query;
   }
 
-  get(id: number): Thread {
-    const query = this.db.query(`select id, name from threads where id = $id`);
-    return query.get({ $id: id }) as Thread;
+  async insert(name: string) {
+    await supabase
+      .from('threads')
+      .insert({ name: Bun.escapeHTML(name) });
   }
 
-  insert(name: string) {
-    const sql = 'insert into threads (name) values (?)';
-    this.db.run(sql, [Bun.escapeHTML(name)]);
-  }
-
-  countMessages(id: number): number {
-    const query = this.db.query(`select count(*) as count from messages where threadId = $id`);
-    const result = query.get({ $id: id }) as { count: number };
-    return result.count;
+  async countMessages(id: number): Promise<number> {
+    const query = await supabase
+      .from('threads')
+      .select()
+      .filter('threadId', 'eq', id)
+      .then(x => x.count);
+    
+    return query || 0;
   }
 
 } 

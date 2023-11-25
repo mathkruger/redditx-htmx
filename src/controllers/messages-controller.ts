@@ -7,11 +7,11 @@ export class MessagesController {
   service: MessagesService;
 
   constructor() {
-    this.service = new MessagesService('./src/db/database.sqlite');
+    this.service = new MessagesService();
   }
 
   async getAll(threadId: number) {
-    const values: Message[] = this.service.getAll(threadId);
+    const values: Message[] = await this.service.getAll(threadId);
 
     const promisses = values.map((x) =>
       renderTemplate(
@@ -38,7 +38,7 @@ export class MessagesController {
     const content = form.get('content')?.toString();
     
     if (title && content) {
-      this.service.insert(threadId, title, content);
+      await this.service.insert(threadId, title, content);
     }
 
     return await this.getAll(threadId);

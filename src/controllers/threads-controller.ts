@@ -6,17 +6,16 @@ export class ThreadsController {
   service: ThreadsService;
 
   constructor() {
-    this.service = new ThreadsService("./src/db/database.sqlite");
+    this.service = new ThreadsService();
   }
 
   async getAll() {
-    const values: Thread[] = this.service.getAll();
+    const values: Thread[] = await this.service.getAll();
     const promisses = values.map((x) =>
       renderTemplate(
         "components/thread/item",
         { name: "id", value: x.id },
         { name: "name", value: x.name },
-        { name: "count", value: this.service.countMessages(x.id) }
       )
     );
 
@@ -24,14 +23,14 @@ export class ThreadsController {
 
     const template = await renderTemplate(
       "components/thread/list",
-      { name: "items", value: itemsHtml.join("\n") }
+      { name: "items", value: itemsHtml.join("\n") }
     );
 
     return new Response(template);
   }
 
   async get(id: number) {
-    const thread = this.service.get(id);
+    const thread = await this.service.get(id);
     const template = await renderTemplate(
       "components/thread/detail",
       { name: "name", value: thread.name }
@@ -44,9 +43,13 @@ export class ThreadsController {
     const name = form.get("name")?.toString();
 
     if (name) {
-      this.service.insert(name);
+      await this.service.insert(name);
     }
 
     return await this.getAll();
+  }
+
+  async messagesCount(id: number) {
+    return new Response((await this.service.countMessages(id)).toString());
   }
 }

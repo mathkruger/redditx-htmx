@@ -1,3 +1,6 @@
 <li>
-  <a class="hover:bg-blue-200" href="/thread?id={id}">{name} ({count} messages)</a>
+  <a class="hover:bg-blue-200" href="/thread?id={id}"
+    >{name} (<span hx-get="/messages-count?id={id}" hx-trigger="load" hx-swap="outerHTML"></span>
+    messages)</a
+  >
 </li>

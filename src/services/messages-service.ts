@@ -1,40 +1,26 @@
 import Database from "bun:sqlite";
 import { Message } from "../models/message";
+import { supabase } from "../db/supabase";
 
 export class MessagesService {
-  db: Database;
-
-  constructor(database: string) {
-    this.db = new Database(database, {
-      create: true
-    });
-
-    this.db.run(`
-      create table if not exists messages (
-        id integer primary key,
-        threadId integer,
-        title text,
-        content text,
-        timestamp text
-      )
-    `);
+  async getAll(threadId: number): Promise<Message[]> {
+    const query = await supabase
+      .from('messages')
+      .select('id, title, content, timestamp')
+      .filter('threadId', 'eq', threadId)
+      .then(x => x.data as Message[]);
+    return query;
   }
 
-  getAll(threadId: number): Message[] {
-    const query = this.db.query(`select id, title, content, timestamp from messages where threadId = $threadId`);
-    return query.all({ $threadId: threadId }) as Message[];
-  }
-
-  insert(threadId: number, title: string, content: string) {
+  async insert(threadId: number, title: string, content: string) {
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`
-    const sql = 'insert into messages (threadId, title, content, timestamp) values (?, ?, ?, ?)';
-    
-    this.db.run(sql, [threadId, Bun.escapeHTML(title), Bun.escapeHTML(content), timestamp]);
-  }
 
-  delete(id: number) {
-    const sql = 'delete threads where id = ?';
-    return this.db.run(sql, [id]);
+    await supabase.from('messages').insert({
+      threadId,
+      title: Bun.escapeHTML(title),
+      content: Bun.escapeHTML(content),
+      timestamp
+    });
   }
 } 
