@@ -14,7 +14,7 @@ export class ThreadsController {
     const promisses = values.map((x) =>
       renderTemplate(
         "components/thread/item",
-        { name: "id", value: x.id },
+        { name: "id", value: x.id, replaceAll: true },
         { name: "name", value: x.name },
       )
     );

@@ -25,11 +25,10 @@ export class ThreadsService {
 
   async countMessages(id: number): Promise<number> {
     const query = await supabase
-      .from('threads')
-      .select()
+      .from('messages')
+      .select('id', { count: 'exact' })
       .filter('threadId', 'eq', id)
       .then(x => x.count);
-    
     return query || 0;
   }
 
