@@ -1,4 +1,4 @@
-<a class="hover:bg-blue-200" href="/">Back</a>
+<a class="text-white hover:bg-slate-700" href="/">Back</a>
 
 <div id="indicator" class="htmx-indicator font-mono">...</div>
 
@@ -9,9 +9,13 @@
   hx-indicator="#indicator"
 ></div>
 
-<div class="p-4 border-2 border-slate">
-  <h2 class="font-mono text-lg mb-2">New message</h2>
+<details class="p-4 border-2 border-slate text-white">
+  <summary class="font-mono text-lg cursor-pointer">
+    New message
+  </summary>
+
   <form
+    class="mt-2"
     hx-post="/message?id={id}"
     hx-target="#messages"
     hx-swap="innerHTML"
@@ -38,7 +42,7 @@
       Send message
     </button>
   </form>
-</div>
+</details>
 
 <div
   id="messages"

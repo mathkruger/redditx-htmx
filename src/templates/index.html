@@ -1,18 +1,15 @@
-<h1 class="font-mono text-4xl mb-4">RedditX</h1>
+<h1 class="font-mono text-4xl mb-4 text-white">RedditX</h1>
 
-<div id="indicator" class="htmx-indicator font-mono">...</div>
-
-<div class="p-4 border-2 border-slate">
-  <h2 class="font-mono text-lg mb-2">Create new thread</h2>
+<div class="p-4 border-2 border-white">
+  <h2 class="font-mono text-lg mb-2 text-white">Create new thread</h2>
   <form
     hx-post="/thread"
     hx-target="#threads"
     hx-swap="innerHTML"
-    hx-indicator="#indicator"
     hx-on::after-request="this.reset()"
   >
     <input
-      class="p-2 rounded border-2 border-slate"
+      class="p-2 rounded border-2 border-white"
       type="text"
       name="name"
       placeholder="Thread name"
@@ -26,8 +23,8 @@
   </form>
 </div>
 
-<div class="p-4 mt-4 border-2 border-slate">
-  <h2 class="font-mono text-lg mb-2">Threads</h2>
+<div class="p-4 mt-4 border-2 border-white">
+  <h2 class="font-mono text-lg mb-2 text-white">Threads</h2>
   <div
     id="threads"
     hx-get="/thread-list"
@@ -35,4 +32,5 @@
     hx-indicator="#indicator"
     hx-swap="innerHTML"
   ></div>
+  <div id="indicator" class="htmx-indicator font-mono text-white">...</div>
 </div>

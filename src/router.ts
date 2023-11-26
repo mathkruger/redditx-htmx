@@ -48,12 +48,12 @@ export async function handleRoutes(req: Request) {
     const formData = await req.formData();
     
     if (url.pathname === '/thread') {
-      return await threadsController.add(formData);
+      return await threadsController.add(formData as FormData);
     }
 
     if (url.pathname === '/message') {
       const threadId = parseInt(params.get('id') || '0');
-      return await messagesController.add(threadId, formData);
+      return await messagesController.add(threadId, formData as FormData);
     }
   }
 
