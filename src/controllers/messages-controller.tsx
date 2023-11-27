@@ -24,7 +24,7 @@ export class MessagesController {
       await this.service.insert(threadId, title, content);
     }
 
-    return await this.getAll(threadId);
+    return await this.getAll(threadId, "newer");
   }
 
 }
