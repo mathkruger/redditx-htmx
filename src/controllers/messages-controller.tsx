@@ -1,4 +1,3 @@
-import * as elements from "typed-html";
 import { Message } from "../models/message";
 import { MessagesService } from "../services/messages-service";
 import { MessageList } from "../templates/components/message/list";

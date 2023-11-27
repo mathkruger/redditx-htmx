@@ -1,4 +1,3 @@
-import * as elements from "typed-html";
 import { ThreadForm } from "./components/thread/form";
 
 export const Home = () => {

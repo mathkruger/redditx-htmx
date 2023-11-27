@@ -1,6 +1,6 @@
-import * as elements from "typed-html";
+import { PropsWithChildren } from "@kitajs/html";
 
-export const Base = ({ children }: elements.Children) => {
+export const Base = ({ children }: PropsWithChildren) => {
   return `
   <html lang="en">
     <head>
@@ -13,7 +13,7 @@ export const Base = ({ children }: elements.Children) => {
       <script src="https://cdn.tailwindcss.com" defer></script>
     </head>
     
-    <body class="bg-slate-800">
+    <body class="bg-slate-800" hx-boost="true">
       <div class="container mx-auto p-4 max-w-3xl w-full">
         ${children}
       </div>

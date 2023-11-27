@@ -1,5 +1,4 @@
 import { ThreadsService } from "../services/threads-service";
-import * as elements from "typed-html";
 import { Base } from "../templates/_base";
 import { Home } from "../templates/home";
 import { ThreadPage } from "../templates/thread";

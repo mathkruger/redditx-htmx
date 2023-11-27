@@ -1,5 +1,3 @@
-import * as elements from "typed-html";
-
 export const MessageForm = ({ threadId }: {
   threadId: number
 }) => {

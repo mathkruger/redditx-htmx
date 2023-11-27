@@ -1,4 +1,3 @@
-import * as elements from "typed-html";
 import { MessageForm } from "./components/message/form";
 import { Thread } from "../models/thread";
 

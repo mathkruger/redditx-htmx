@@ -1,4 +1,3 @@
-import * as elements from "typed-html";
 import { Message } from "../../../models/message";
 
 export const MessageItem = ({ item }: {
