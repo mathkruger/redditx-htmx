@@ -10,14 +10,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "typed-html": "^3.0.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@elysiajs/html": "^0.7.3",
     "@stricjs/router": "^5.0.6",
     "@stricjs/utils": "^1.6.1",
-    "@supabase/supabase-js": "^2.38.5"
+    "@supabase/supabase-js": "^2.38.5",
+    "elysia": "^0.7.29"
   }
 }
