@@ -3,6 +3,8 @@ import { Thread } from "../models/thread";
 import { ThreadsService } from "../services/threads-service";
 import { ThreadList } from "../templates/components/thread/list";
 import { ThreadDetail } from "../templates/components/thread/detail";
+import { Base } from "../templates/_base";
+import { ThreadPage as ThreadPage } from "../templates/thread";
 
 export class ThreadsController {
   private service: ThreadsService;
@@ -14,11 +16,6 @@ export class ThreadsController {
   async getAll() {
     const values: Thread[] = await this.service.getAll();
     return <ThreadList items={values}/>;
-  }
-
-  async get(id: number) {
-    const thread = await this.service.get(id);
-    return <ThreadDetail name={thread.name} />;
   }
 
   async add(form: FormData) {

@@ -5,9 +5,9 @@ export const ThreadItem = ({name, id}: {
   id: number
 }) => {
   return <li class="text-white">
-    <a class="hover:bg-slate-700" href={`/thread?id=${id}`}>
+    <a class="hover:bg-slate-700" href={`/thread/${id}`}>
       {name}
-      (<span hx-get={`/messages-count?id=${id}`} hx-trigger="load" hx-swap="outerHTML"></span> messages)
+      (<span hx-get={`/message/count/${id}`} hx-trigger="load" hx-swap="outerHTML"></span> messages)
     </a>
   </li>
 }
