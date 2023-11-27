@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "bun --hot run src/index.ts"
+    "dev:start": "bun --hot run src/index.ts",
+    "start": "bun run src/index.ts"
   },
   "keywords": [],
   "author": "",
