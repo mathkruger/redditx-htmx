@@ -1,9 +1,8 @@
-import Database from "bun:sqlite";
 import { Message } from "../models/message";
 import { supabase } from "../db/supabase";
 
 export class MessagesService {
-  async getAll(threadId: number): Promise<Message[]> {
+  static async getAll(threadId: number): Promise<Message[]> {
     const query = await supabase
       .from('messages')
       .select('id, title, content, timestamp')
@@ -12,7 +11,7 @@ export class MessagesService {
     return query;
   }
 
-  async insert(threadId: number, title: string, content: string) {
+  static async insert(threadId: number, title: string, content: string) {
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`
 

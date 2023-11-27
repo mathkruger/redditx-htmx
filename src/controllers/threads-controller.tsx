@@ -5,29 +5,23 @@ import { ThreadList } from "../templates/components/thread/list";
 import { getFormData } from "../utils/get-formdata";
 
 export class ThreadsController {
-  private service: ThreadsService;
-
-  constructor() {
-    this.service = new ThreadsService();
-  }
-
-  async getAll() {
-    const values: Thread[] = await this.service.getAll();
+  static async getAll() {
+    const values: Thread[] = await ThreadsService.getAll();
     return <ThreadList items={values}/>;
   }
 
-  async add(form: FormData) {
+  static async add(form: FormData) {
     const name = form.get("name")?.toString();
 
     if (name) {
-      await this.service.insert(name);
+      await ThreadsService.insert(name);
     }
 
     return await this.getAll();
   }
 
-  async messagesCount(id: number) {
-    const count = await this.service.countMessages(id);
+  static async messagesCount(id: number) {
+    const count = await ThreadsService.countMessages(id);
     return (
       <span>
         <strong>{count}</strong> {count === 1 ? 'message' : 'messages'}

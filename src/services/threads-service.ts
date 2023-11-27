@@ -2,12 +2,12 @@ import { Thread } from "../models/thread";
 import { supabase } from "../db/supabase";
 
 export class ThreadsService {
-  async getAll(): Promise<Thread[]> {
+  static async getAll(): Promise<Thread[]> {
     const query = await supabase.from('threads').select('id, name').then(x => x.data as Thread[]);
     return query;
   }
 
-  async get(id: number): Promise<Thread> {
+  static async get(id: number): Promise<Thread> {
     const query = await supabase
       .from('threads')
       .select('id, name')
@@ -17,13 +17,13 @@ export class ThreadsService {
     return query;
   }
 
-  async insert(name: string) {
+  static async insert(name: string) {
     await supabase
       .from('threads')
       .insert({ name: Bun.escapeHTML(name) });
   }
 
-  async countMessages(id: number): Promise<number> {
+  static async countMessages(id: number): Promise<number> {
     const query = await supabase
       .from('messages')
       .select('id', { count: 'exact' })
