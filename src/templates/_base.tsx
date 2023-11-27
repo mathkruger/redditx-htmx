@@ -2,7 +2,7 @@ import * as elements from "typed-html";
 
 export const Base = ({ children }: elements.Children) => {
   return `
-    <html lang="en">
+  <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@ export const Base = ({ children }: elements.Children) => {
     </head>
     
     <body class="bg-slate-800">
-      <div class="container mx-auto p-4">
+      <div class="container mx-auto p-4 max-w-3xl w-full">
         ${children}
       </div>
     </body>

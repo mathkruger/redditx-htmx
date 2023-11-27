@@ -3,7 +3,7 @@ import { ThreadForm } from "./components/thread/form";
 
 export const Home = () => {
   return <section class="home">
-    <h1 class="font-mono text-4xl mb-4 text-white">RedditX</h1>
+    <h1 class="font-mono text-4xl mb-4 text-white text-center">RedditX</h1>
 
     <ThreadForm />
 

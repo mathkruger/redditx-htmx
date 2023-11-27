@@ -10,10 +10,10 @@ export class MessagesController {
     this.service = new MessagesService();
   }
 
-  async getAll(threadId: number) {
+  async getAll(threadId: number, order?: "older" | "newer") {
     const values: Message[] = await this.service.getAll(threadId);
 
-    return <MessageList items={values} />;
+    return <MessageList items={values} order={order} threadId={threadId} />;
   }
 
   async add(threadId: number, form: FormData) {
