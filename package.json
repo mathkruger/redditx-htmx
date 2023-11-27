@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev:start": "bun --hot run src/index.ts",
-    "start": "bun run src/index.ts"
+    "start": "bun run src/index.ts",
+    "build": "bun build --target=node src/index.ts --outdir=dist"
   },
   "keywords": [],
   "author": "",
