@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
-import { handleRoutes } from "./router";
+import { routes } from "./router";
+import { html } from "@elysiajs/html";
 
-const app = handleRoutes(new Elysia());
+const app = new Elysia().use(html()).use(routes);
+
 app.listen(3000);
-
-

@@ -2,9 +2,7 @@ import * as elements from "typed-html";
 import { Thread } from "../models/thread";
 import { ThreadsService } from "../services/threads-service";
 import { ThreadList } from "../templates/components/thread/list";
-import { ThreadDetail } from "../templates/components/thread/detail";
-import { Base } from "../templates/_base";
-import { ThreadPage as ThreadPage } from "../templates/thread";
+import { getFormData } from "../utils/get-formdata";
 
 export class ThreadsController {
   private service: ThreadsService;
@@ -29,6 +27,11 @@ export class ThreadsController {
   }
 
   async messagesCount(id: number) {
-    return await this.service.countMessages(id);
+    const count = await this.service.countMessages(id);
+    return (
+      <span>
+        <strong>{count}</strong> {count === 1 ? 'message' : 'messages'}
+      </span>
+    );
   }
 }

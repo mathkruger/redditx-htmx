@@ -1,7 +1,6 @@
 import * as elements from "typed-html";
 import { MessageForm } from "./components/message/form";
 import { Thread } from "../models/thread";
-import { ThreadDetail } from "./components/thread/detail";
 
 export const ThreadPage = ({ id, name }: Thread) => {
   return <section>
@@ -9,7 +8,7 @@ export const ThreadPage = ({ id, name }: Thread) => {
 
     <div id="indicator" class="htmx-indicator font-mono">...</div>
 
-    <ThreadDetail name={name} />
+    <h1 class="font-mono text-4xl mb-4 text-white">Thread: {name}</h1>
 
     <MessageForm threadId={id} />
 

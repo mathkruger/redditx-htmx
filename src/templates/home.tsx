@@ -13,10 +13,8 @@ export const Home = () => {
         id="threads"
         hx-get="/thread/list"
         hx-trigger="load"
-        hx-indicator="#indicator"
         hx-swap="innerHTML"
       ></div>
-      <div id="indicator" class="htmx-indicator font-mono text-white">...</div>
     </div>
   </section>
 }
