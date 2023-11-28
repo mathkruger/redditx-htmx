@@ -1,7 +1,7 @@
 import { Message } from "../../../models/message";
 
 export const MessageItem = ({ item }: { item: Message }) => {
-  const { title, content, timestamp, imageUrl } = item;
+  const { id, title, content, timestamp, imageUrl } = item;
 
   return (
     <li class="card bg-neutral text-neutral-content w-full mb-4">
@@ -12,16 +12,25 @@ export const MessageItem = ({ item }: { item: Message }) => {
         {imageUrl && (
           <>
             <figure
-              class="max-h-64 overflow-hidden rounded cursor-pointer"
-              _="on click toggle .max-h-64"
+              class="max-h-32 overflow-hidden rounded cursor-pointer"
+              _={`on click js photo_${id}.showModal()`}
             >
-              <img class="max-w-200" src={imageUrl} />
+              <img class="max-w-150" src={imageUrl} />
             </figure>
-            <legend class="text-white text-xs">Click on image to expand</legend>
+
+            <dialog id={`photo_${id}`} class="modal">
+              <div class="modal-box">
+                <form method="dialog" hx-boost="false">
+                  <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    ✕
+                  </button>
+                </form>
+                <img class="mx-auto" src={imageUrl} />
+              </div>
+            </dialog>
           </>
         )}
         <p>{content}</p>
-        
         <small>{timestamp}</small>
       </div>
     </li>

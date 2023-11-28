@@ -1,11 +1,11 @@
 export const MessageForm = ({ threadId }: { threadId: number }) => {
   return (
-    <details class="card bg-neutral text-neutral-content w-full">
-      <summary class="font-mono text-lg cursor-pointer text-white p-4">
+    <details class="collapse collapse-arrow  bg-neutral text-neutral-content w-full">
+      <summary class="collapse-title font-mono text-lg">
         New message
       </summary>
 
-      <div class="card-body p-4 pt-0">
+      <div class="collapse-content">
         <form
           class="mt-2"
           hx-post={`/message/${threadId}`}
