@@ -11,4 +11,5 @@ export const routes = new Elysia()
   .get("/message/list/:id", async ({ params, query }) => await MessagesController.getAll(parseInt(params.id), <"newer" | "older">query["order"]))
   .get("/message/count/:id", async ({ params }) => await ThreadsController.messagesCount(parseInt(params.id)))
   .post("/thread", async ({ body }) => await ThreadsController.add(getFormData(body)))
+  .post("/thread/list", async ({ body }) => await ThreadsController.getAll(getFormData(body).get("search")?.toString()))
   .post("/message/:id", async ({ params, body }) => await MessagesController.add(parseInt(params.id), getFormData(body)));

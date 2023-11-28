@@ -16,8 +16,6 @@ export class FileService {
   }
 
   static getUrl(filePath: string) {
-    const url = supabase.storage.from("postsMedia").getPublicUrl(filePath).data.publicUrl;
-    console.log(url);
-    return url;
+    return supabase.storage.from("postsMedia").getPublicUrl(filePath).data.publicUrl;
   }
 }

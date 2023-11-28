@@ -2,11 +2,16 @@ import { Thread } from "../models/thread";
 import { supabase } from "../db/supabase";
 
 export class ThreadsService {
-  static async getAll(): Promise<Thread[]> {
-    const query = await supabase
+  static async getAll(searchQuery?: string): Promise<Thread[]> {
+    const query = searchQuery ? await supabase
+      .from("threads")
+      .select("id, name")
+      .textSearch("name", searchQuery)
+      .then((x) => x.data as Thread[]) : await supabase
       .from("threads")
       .select("id, name")
       .then((x) => x.data as Thread[]);
+    
     return query;
   }
 

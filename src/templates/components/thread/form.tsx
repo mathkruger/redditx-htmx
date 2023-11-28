@@ -1,9 +1,11 @@
 export const ThreadForm = () => {
   return (
-    <div class="card bg-neutral text-neutral-content w-full">
-      <div class="card-body">
-        <h2 class="font-mono text-lg mb-2 text-white">Create a new thread</h2>
+    <details class="collapse collapse-arrow  bg-neutral text-neutral-content w-full">
+      <summary class="collapse-title font-mono text-lg">
+        New thread
+      </summary>
 
+      <div class="collapse-content">
         <form
           class="flex gap-4"
           hx-post="/thread"
@@ -23,6 +25,6 @@ export const ThreadForm = () => {
           </button>
         </form>
       </div>
-    </div>
+    </details>
   );
 };

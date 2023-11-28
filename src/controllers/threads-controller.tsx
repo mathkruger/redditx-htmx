@@ -3,8 +3,8 @@ import { ThreadsService } from "../services/threads-service";
 import { ThreadList } from "../templates/components/thread/list";
 
 export class ThreadsController {
-  static async getAll() {
-    const values: Thread[] = await ThreadsService.getAll();
+  static async getAll(searchQuery?: string) {
+    const values: Thread[] = await ThreadsService.getAll(searchQuery);
     return <ThreadList items={values}/>;
   }
 

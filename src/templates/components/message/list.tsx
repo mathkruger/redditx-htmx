@@ -14,10 +14,10 @@ export const MessageList = ({
 
   return (
     <>
-      <h2 class="font-mono text-lg mt-4 text-white">
+      <h2 class="font-mono text-lg mt-4">
         Messages {`(${items.length})`} - {" "}
         <a
-          class="text-white hover:bg-slate-700 cursor-pointer"
+          class="hover:bg-slate-700 cursor-pointer"
           hx-get={`/message/list/${threadId}?order=${
             order === "newer" ? "older" : "newer"
           }`}
@@ -28,7 +28,7 @@ export const MessageList = ({
           {order} first
         </a>
       </h2>
-      <ul class="list-none my-4 text-white">
+      <ul class="list-none my-4">
         {list.map((x) => (
           <MessageItem item={x} />
         ))}
