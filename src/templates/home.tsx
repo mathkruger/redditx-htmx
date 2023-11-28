@@ -6,14 +6,16 @@ export const Home = () => {
 
     <ThreadForm />
 
-    <div class="p-4 mt-4 border-2 border-white">
-      <h2 class="font-mono text-lg mb-2 text-white">Threads</h2>
-      <div
-        id="threads"
-        hx-get="/thread/list"
-        hx-trigger="load"
-        hx-swap="innerHTML"
-      ></div>
+    <div class="card bg-neutral text-neutral-content w-full mt-4">
+      <div class="card-body">
+        <h2 class="font-mono text-lg mb-2 text-white">Threads</h2>
+        <div
+          id="threads"
+          hx-get="/thread/list"
+          hx-trigger="load"
+          hx-swap="innerHTML"
+        ></div>
+      </div>
     </div>
   </section>
 }
